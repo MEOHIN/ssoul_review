@@ -25,15 +25,102 @@ repositories {
 }
 
 dependencies {
+
+	/* ---------------------------
+	 * 📌 Spring Web (MVC)
+	 * --------------------------- */
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// Spring MVC 기반 웹 서버
+
+
+	/* ---------------------------
+	 * 📌 Validation
+	 * --------------------------- */
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+
+	/* ---------------------------
+	 * 📌 Data Access
+	 * --------------------------- */
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	runtimeOnly 'com.h2database:h2'                 // 개발용 DB
+	runtimeOnly 'com.mysql:mysql-connector-j'       // 운영 DB
+
+
+	/* ---------------------------
+	 * 📌 Security & OAuth
+	 * --------------------------- */
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+
+	/* ---------------------------
+	 * 📌 JWT
+	 * --------------------------- */
+	implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.3'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.3'
+
+
+	/* ---------------------------
+	 * 📌 Batch
+	 * --------------------------- */
+	implementation 'org.springframework.boot:spring-boot-starter-batch'
+	testImplementation 'org.springframework.batch:spring-batch-test'
+
+
+	/* ---------------------------
+	 * 📌 Redis & Session
+	 * --------------------------- */
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'org.springframework.session:spring-session-data-redis'
+
+
+	/* ---------------------------
+	 * 📌 Actuator (운영 모니터링)
+	 * --------------------------- */
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+
+	/* ---------------------------
+	 * 📌 AWS S3 (Spring Cloud AWS 사용)
+	 * --------------------------- */
+	implementation 'io.awspring.cloud:spring-cloud-aws-starter-s3:3.4.0'
+	// 기존 aws-java-sdk-s3 삭제됨
+
+
+	/* ---------------------------
+	 * 📌 환경 변수(.env)
+	 * --------------------------- */
+	implementation 'io.github.cdimascio:java-dotenv:5.2.2'
+
+
+	/* ---------------------------
+	 * 📌 Lombok & DevTools
+	 * --------------------------- */
 	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
-	testImplementation 'org.springframework.boot:spring-boot-starter-security-test'
-	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+
+	/* ---------------------------
+	 * 📌 Swagger / OpenAPI
+	 * --------------------------- */
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0'
+
+
+	/* ---------------------------
+	 * 📌 Spring AI + OpenAI
+	 * --------------------------- */
+	implementation platform('org.springframework.ai:spring-ai-bom:1.0.0-M4')
+	implementation 'org.springframework.ai:spring-ai-openai-spring-boot-starter'
+
+
+	/* ---------------------------
+	 * 📌 Test
+	 * --------------------------- */
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
