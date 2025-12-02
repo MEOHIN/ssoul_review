@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    url: ${DATABASE_URL}  # MySQL ?? DB URL
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update  # ??? ?? ?? ??
+    properties:
+      hibernate:
+        show_sql: false  # ????? SQL ?? ????
+
+  data:
+    redis:
+      host: ${REDIS_HOST}  # Redis ???
+      password: ${REDIS_PASSWORD}  # Redis ????
+
+springdoc:
+  swagger-ui:
+    enabled: false  # ????? Swagger UI ????
+
+logging:
+  level:
+    com.back: INFO
+    root: WARN  # ??? ?? ??
+
+custom:
+  cookie:
+    secure: true  # HTTPS ??
+    same: "None"
+  site:
+    cookieDomain: "${BASE_URL}"
+    frontUrl: "${custom.prod.frontUrl}"
+    backUrl: "${custom.prod.backUrl}"
+    name: ssoul
