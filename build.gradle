@@ -85,9 +85,9 @@ dependencies {
 
 
 	/* ---------------------------
-	 * 📌 AWS S3 (Spring Cloud AWS 사용)
-	 * --------------------------- */
-	implementation 'io.awspring.cloud:spring-cloud-aws-starter-s3:3.4.0'
+ * 📌 AWS S3 (Spring Cloud AWS 사용)
+ * --------------------------- */
+	implementation 'io.awspring.cloud:spring-cloud-aws-starter-s3:3.3.0'
 	// 기존 aws-java-sdk-s3 삭제됨
 
 
