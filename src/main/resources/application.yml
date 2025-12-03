@@ -1,19 +1,19 @@
 spring:
   profiles:
-    active: dev   # ?? ?? ???? dev? ?? (??? yml ???)
+    active: dev   # 기본 활성 프로필을 dev로 지정(환경별 yml에서 덮어쓰기 가능)
 
   config:
-    import: optional:file:.env[.properties]  # .env ?? .properties ???? ???? ??
+    import: optional:file:.env[.properties]  # .env 또는 .env.properties를 옵션으로 로드
 
   application:
-    name: back   # ?????? ?? ??
+    name: back   # 서비스 이름
 
   security:
     oauth2:
       client:
-        registration:  # OAuth2 ????? ??
+        registration:  # OAuth2 클라이언트 등록 설정
           kakao:
-            clientId: ${KAKAO_OAUTH2_CLIENT_ID}  # ?????? ????
+            clientId: ${KAKAO_OAUTH2_CLIENT_ID}  # 카카오 클라이언트 ID
             scope: profile_nickname
             client-name: Kakao
             authorization-grant-type: authorization_code
@@ -31,7 +31,7 @@ spring:
             client-name: Naver
             authorization-grant-type: authorization_code
             redirect-uri: '${custom.site.backUrl}/{action}/oauth2/code/{registrationId}'
-        provider:  # OAuth2 ??? URL ??
+        provider:  # OAuth2 프로바이더 엔드포인트
           kakao:
             authorization-uri: https://kauth.kakao.com/oauth/authorize
             token-uri: https://kauth.kakao.com/oauth/token
@@ -46,68 +46,68 @@ spring:
   cloud:
     aws:
       region:
-        static: ap-northeast-2  # AWS ??
+        static: ap-northeast-2  # AWS 리전
       stack:
-        auto: false  # CloudFormation ?? ???? ????
-      credentials:  # AWS ?? ?
+        auto: false  # CloudFormation 스택 자동 생성 비활성
+      credentials:  # AWS 자격 증명
         access-key: ${AWS_ACCESS_KEY_ID}
         secret-key: ${AWS_SECRET_ACCESS_KEY}
       s3:
-        bucket: team2-app-s3-bucket  # S3 ?? ??
+        bucket: team2-app-s3-bucket  # S3 버킷 이름
 
   ai:
     openai:
-      api-key: ${OPEN_API_KEY}  # OpenAI API ?
+      api-key: ${OPEN_API_KEY}  # OpenAI API 키
       chat:
         base-url: "https://generativelanguage.googleapis.com/v1beta/openai/"
         options:
-          model: "gemini-2.0-flash-exp"  # AI ?? ??
+          model: "gemini-2.0-flash-exp"  # 사용할 모델 이름
           temperature: 0.8
           max-tokens: 1000
-        completions-path: "/chat/completions"  # API ??
+        completions-path: "/chat/completions"  # OpenAI Chat Completions 엔드포인트
 
   batch:
     job:
-      enabled: false  # ?? ? ?? ????
+      enabled: false  # 배치 잡 자동 실행 비활성화
 
 springdoc:
-  default-produces-media-type: application/json;charset=UTF-8  # Swagger ?? MIME ??
+  default-produces-media-type: application/json;charset=UTF-8  # Swagger 기본 MIME 타입
 
 server:
-  port: 8080  # ?? ??
-  forward-headers-strategy: native  # ??? ???? X-Forwarded-* ?? ??
+  port: 8080  # 서버 포트
+  forward-headers-strategy: native  # 프록시의 X-Forwarded-* 헤더 처리 전략
   servlet:
     encoding:
       charset: UTF-8
       enabled: true
-      force: true  # ??/?? ??? ??
+      force: true  # 요청/응답 인코딩 강제
 
 custom:
   site:
-    name: ssoul  # ??? ??
+    name: ssoul  # 사이트 이름
   jwt:
-    secretKey: ${JWT_SECRET_KEY}  # JWT ???
+    secretKey: ${JWT_SECRET_KEY}  # JWT 서명 키
   accessToken:
-    expirationSeconds: 900  # ??? ?? ?? 15?
+    expirationSeconds: 900  # 액세스 토큰 만료(초) 15분
   refreshToken:
-    expirationSeconds: 2592000  # ???? ?? ?? 30?
-    idleTimeoutHours: 144  # ?? ???? 6?
+    expirationSeconds: 2592000  # 리프레시 토큰 만료(초) 30일
+    idleTimeoutHours: 144  # 리프레시 토큰 유휴 만료(시간) 6일
 
 management:
   endpoints:
     web:
-      base-path: /actuator  # actuator ?? ??
+      base-path: /actuator  # actuator 기본 경로
       exposure:
-        include: health,info  # ??? ?????
+        include: health,info  # 노출할 엔드포인트
   endpoint:
     health:
       probes:
-        enabled: true  # readiness/liveness ??? ???
-      show-details: never  # ?? ?? ?? ??
+        enabled: true  # readiness/liveness 프로브 활성화
+      show-details: never  # 헬스 상세 노출 수준
 
 chatbot:
   history:
-    max-conversation-count: 5  # ?? ???? ?? ??
+    max-conversation-count: 5  # 저장할 대화 기록 개수
   system:
-    prompt-file: classpath:prompts/chatbot-system-prompt.txt  # ??? ???? ??
-    rules-file: classpath:prompts/chatbot-response-rules.txt  # ?? ?? ??
+    prompt-file: classpath:prompts/chatbot-system-prompt.txt  # 시스템 프롬프트 파일
+    rules-file: classpath:prompts/chatbot-response-rules.txt  # 응답 규칙 파일

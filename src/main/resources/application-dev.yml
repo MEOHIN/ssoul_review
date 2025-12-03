@@ -1,46 +1,44 @@
 spring:
   datasource:
-    driver-class-name: org.h2.Driver  # H2 DB ????
-    url: jdbc:h2:./db_dev;MODE=MySQL  # H2 DB ?? ? MySQL ?? ??
+    driver-class-name: org.h2.Driver  # H2 드라이버
+    url: jdbc:h2:./db_dev;MODE=MySQL  # H2를 MySQL 호환 모드로 사용
     username: sa
     password:
 
   h2:
     console:
-      enabled: true  # H2 ? ?? ???
-      path: /h2-console  # ?? ?? ??
+      enabled: true  # H2 콘솔 사용
+      path: /h2-console  # 콘솔 경로
 
   jpa:
-    defer-datasource-initialization: true  # ??? ??
+    defer-datasource-initialization: true  # 스키마/데이터 초기화 지연
     database-platform: org.hibernate.dialect.H2Dialect  # H2 Dialect
     hibernate:
-      ddl-auto: create-drop  # ?? ? ??? ??, ?? ? ??
+      ddl-auto: create-drop  # 시작 시 생성, 종료 시 삭제
     properties:
       hibernate:
-        format_sql: true  # SQL ???
-        show_sql: true  # SQL ?? ??
+        format_sql: true  # SQL 포매팅
+        show_sql: true  # SQL 로그 출력
 
   sql:
     init:
-      mode: always  # ?? ??? ???? ??
-      encoding: UTF-8
-      data-locations: classpath:data-h2.sql  # ?? ??? SQL
+      mode: never  # 기본 데이터 스크립트 실행 안 함
 
 springdoc:
   api-docs:
     path: /api-docs
   swagger-ui:
     path: /swagger-ui.html
-    operationsSorter: method  # Swagger ?? ??
+    operationsSorter: method  # Swagger 정렬 기준
 
 logging:
   level:
     org.hibernate.orm.jdbc.bind: TRACE
     org.hibernate.orm.jdbc.extract: TRACE
     org.springframework.transaction.interceptor: TRACE
-    com.back: DEBUG  # ??? ??? ??
+    com.back: DEBUG  # 애플리케이션 디버그 로그
 
 custom:
   cookie:
-    secure: false  # ??? HTTP ??
+    secure: false  # 로컬은 HTTP 허용
     same: "Lax"
