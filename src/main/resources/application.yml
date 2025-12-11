@@ -87,11 +87,11 @@ custom:
     name: ssoul  # 사이트 이름
   jwt:
     secretKey: ${JWT_SECRET_KEY}  # JWT 서명 키
-  accessToken:
-    expirationSeconds: 900  # 액세스 토큰 만료(초) 15분
-  refreshToken:
-    expirationSeconds: 2592000  # 리프레시 토큰 만료(초) 30일
-    idleTimeoutHours: 144  # 리프레시 토큰 유휴 만료(시간) 6일
+    accessToken:
+      expirationSeconds: 900  # 액세스 토큰 만료(초) 15분
+    refreshToken:
+      expirationSeconds: 2592000  # 리프레시 토큰 만료(초) 30일
+      idleTimeoutHours: 144  # 리프레시 토큰 유휴 만료(시간) 6일
 
 management:
   endpoints:
