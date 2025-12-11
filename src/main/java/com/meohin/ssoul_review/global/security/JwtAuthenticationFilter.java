@@ -1,7 +1,7 @@
 package com.meohin.ssoul_review.global.security;
 
 import com.meohin.ssoul_review.domain.user.model.User;
-import com.meohin.ssoul_review.global.security.CustomUserDetails;
+import com.meohin.ssoul_review.global.jwt.JwtUtil;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
