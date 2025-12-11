@@ -1,4 +1,4 @@
-package com.meohin.ssoul_review.domain.token;
+package com.meohin.ssoul_review.domain.token.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

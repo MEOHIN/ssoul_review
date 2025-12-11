@@ -1,7 +1,7 @@
 package com.meohin.ssoul_review.domain.token.service;
 
-import com.meohin.ssoul_review.domain.token.RefreshToken;
-import com.meohin.ssoul_review.domain.token.RefreshTokenRepository;
+import com.meohin.ssoul_review.domain.token.entity.RefreshToken;
+import com.meohin.ssoul_review.domain.token.repository.RefreshTokenRepository;
 import com.meohin.ssoul_review.global.jwt.JwtProperties;
 import com.meohin.ssoul_review.global.jwt.JwtUtil;
 import lombok.RequiredArgsConstructor;
