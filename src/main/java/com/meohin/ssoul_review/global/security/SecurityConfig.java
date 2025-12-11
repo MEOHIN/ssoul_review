@@ -2,7 +2,9 @@ package com.meohin.ssoul_review.global.security;
 
 import java.util.List;
 
+import com.meohin.ssoul_review.global.jwt.JwtUtil;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -18,7 +20,10 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+	private final JwtUtil jwtUtil;
 
 	@Bean
 	SecurityFilterChain securityFilterChain(org.springframework.security.config.annotation.web.builders.HttpSecurity http)
@@ -32,7 +37,8 @@ public class SecurityConfig {
 					"/swagger-ui/**",
 					"/v3/api-docs/**",
 					"/actuator/health",
-					"/h2-console/**"
+					"/h2-console/**",
+					"/api/auth/**" // Allow authentication endpoints
 				).permitAll()
 				.anyRequest().authenticated()
 			)
@@ -40,6 +46,7 @@ public class SecurityConfig {
 				.authenticationEntryPoint(authenticationEntryPoint())
 				.accessDeniedHandler(accessDeniedHandler())
 			)
+			.addFilterBefore(new JwtAuthenticationFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class) // Add JWT filter
 			.oauth2Login(Customizer.withDefaults());
 
 		return http.build();
