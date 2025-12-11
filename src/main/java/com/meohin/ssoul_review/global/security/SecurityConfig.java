@@ -1,4 +1,4 @@
-package com.meohin.ssoul_review.global.config;
+package com.meohin.ssoul_review.global.security;
 
 import java.util.List;
 

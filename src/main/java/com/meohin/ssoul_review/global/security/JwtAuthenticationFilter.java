@@ -1,4 +1,4 @@
-package com.meohin.ssoul_review.global.jwt;
+package com.meohin.ssoul_review.global.security;
 
 import com.meohin.ssoul_review.domain.user.model.User;
 import com.meohin.ssoul_review.global.security.CustomUserDetails;
